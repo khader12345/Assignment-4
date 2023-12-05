@@ -21,7 +21,7 @@ class UserInteractivity:
     def update_resources(self):
         ID = input("Please enter resource ID to update: ")
         latest_non_key_attribute = input("Please enter the new non-key attribute: ")
-        self.resource_management.edit_resource(ID, latest_non_key_attribute)
+        self.resource_management.update_resource(ID, latest_non_key_attribute)
 
     def delete_resource(self):
         ID = input("Please enter the resource ID to delete: ")
@@ -31,6 +31,18 @@ class UserInteractivity:
         full_resources = self.resource_management.get_full_resources()
         for resource in full_resources:
             print(resource)
+
+    def menu(self):
+        while True:
+            print("\n*Menu*")
+            print("1. |Create Resource|")
+            print("2. |Read (Search) Resources|")
+            print("3. |Edit Resource|")
+            print("4. |Delete Resource|")
+            print("5. |Show All Resources|")
+            print("6. |Save Resource and Exit|")
+            
+
 
 
 

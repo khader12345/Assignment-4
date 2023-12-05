@@ -41,7 +41,26 @@ class UserInteractivity:
             print("4. |Delete Resource|")
             print("5. |Show All Resources|")
             print("6. |Save Resource and Exit|")
-            
+
+            option = input("\nPlease enter your option for the prompts provided above: ")
+
+            if option=='1':
+                self.create_resource()
+            elif option=='2':
+                self.find_resource()
+            elif option=='3':
+                self.change_resource()
+            elif option=='4':
+                self.delete_resource()
+            elif option=='5':
+                self.show_all_resources()
+            elif option=='6':
+                self.save_resource_exit()
+                break
+            else:
+                print("*Incorrect option please try again correctly*")
+
+        
 
 
 

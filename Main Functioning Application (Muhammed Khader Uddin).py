@@ -2,8 +2,8 @@ import json
 
 class UserInteractivity:
     def __init__(self, resource_management, data_info):
-        self.resource_management=resource_management
-        self.data_info=data_info
+        self.resource_management = resource_management
+        self.data_info = data_info
 
     def create_resource(self):
         ID = input("Please enter the resource ID: ")
@@ -60,33 +60,13 @@ class UserInteractivity:
             else:
                 print("*Incorrect option please try again correctly*")
 
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    def save_resource_exit(self):
+        self.data_info.store_data(self.resource_management.get_full_resources())
 
 
 
 class Resources:
+    
     def __init__(self, ID, key_attribute, non_key_attribute):
         self.ID=ID
         self.key_attribute=key_attribute

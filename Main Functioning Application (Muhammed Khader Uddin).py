@@ -100,10 +100,36 @@ class ResourceManagement:
         return self.resources
     
 
-class ExceptionHandling(Exception)
+class ExceptionHandling(Exception):
     pass
-       
 
 
+class UserExceptionHandling(UserInteractivity):
+    def create_resource(self):
+        try:
+            super().create_resource()
+        except Exception as e:
+            print(f"Error: {e}")
+            self.create_resource()
 
-    
+    def find_resource(self):
+        try:
+            super().find_resource()
+        except Exception as e:
+            print(f"Error: {e}")
+            self.find_resource()
+
+    def change_resource(self):
+        try:
+            super().change_resource()
+        except Exception as e:
+            print(f"Error: {e}")
+            self.change_resource()
+
+    def delete_resource(self):
+        try:
+            super().delete_resource()
+        except Exception as e:
+            print(f"Error: {e}")
+            self.delete_resource()
+        

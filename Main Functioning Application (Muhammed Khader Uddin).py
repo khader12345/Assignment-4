@@ -8,17 +8,17 @@ class UserInteractivity:
     def create_resource(self):
         ID = input("Please enter the resource ID: ")
         key_attribute = input("Please enter the key attribute: ")
-        non_key_atribute = input("Please enter the non-key attribute: ")
-        self.resource_management.create_resource(ID, key_attribute, non_key_atribute)
+        non_key_attribute = input("Please enter the non-key attribute: ")
+        self.resource_management.create_resource(ID, key_attribute, non_key_attribute)
 
-    def read_resource(self):
+    def read_resources(self):
         key_attribute = input("Please enter the key attribute for resource to read: ")
         non_key_attribute = input("Please enter the non-key attribubte for resource to read: ")
         establish_resources = self.resource_management.read_resources(key_attribute, non_key_attribute)
         for resource in establish_resources:
             print(resource)
 
-    def update_resources(self):
+    def update_resource(self):
         ID = input("Please enter resource ID to update: ")
         latest_non_key_attribute = input("Please enter the new non-key attribute: ")
         self.resource_management.update_resource(ID, latest_non_key_attribute)
@@ -47,9 +47,9 @@ class UserInteractivity:
             if option=='1':
                 self.create_resource()
             elif option=='2':
-                self.find_resource()
+                self.read_resources()
             elif option=='3':
-                self.change_resource()
+                self.update_resource()
             elif option=='4':
                 self.delete_resource()
             elif option=='5':
@@ -83,20 +83,20 @@ class ResourceManagement:
         resource = Resources(ID, key_attribute, non_key_attribute)
         self.resources.append(resource)
 
-    def find_resource(self, key_attribute, non_key_attribute):
+    def read_resources(self, key_attribute, non_key_attribute):
         return [resource for resource in self.resources
                 if key_attribute.lower() in str(resource.key_attribute).lower()
-                and non_key_attribute.lower() in str(resource.non_key_attribute).lower]
+                and non_key_attribute.lower() in str(resource.non_key_attribute).lower()]
     
-    def change_resource(self, ID, non_key_attribute):
+    def update_resource(self, ID, latest_non_key_attribute):
         for resource in self.resources:
             if resource.ID == ID:
-                resource.non_key_attribute = non_key_attribute
+                resource.non_key_attribute = latest_non_key_attribute
 
     def delete_resource(self, ID):
         self.resources = [resource for resource in self.resources if resource.ID != ID]
 
-    def show_all_resources(self):
+    def get_full_resources(self):
         return self.resources
     
 
@@ -112,19 +112,19 @@ class UserExceptionHandling(UserInteractivity):
             print(f"Error: {e}")
             self.create_resource()
 
-    def find_resource(self):
+    def read_resources(self):
         try:
-            super().find_resource()
+            super().read_resources()
         except Exception as e:
             print(f"Error: {e}")
-            self.find_resource()
+            self.read_resources()
 
-    def change_resource(self):
+    def update_resource(self):
         try:
-            super().change_resource()
+            super().update_resource()
         except Exception as e:
             print(f"Error: {e}")
-            self.change_resource()
+            self.update_resource()
 
     def delete_resource(self):
         try:

@@ -61,7 +61,7 @@ class UserInteractivity:
                 print("*Incorrect option please try again correctly*")
 
     def save_resource_exit(self):
-        self.data_info.store_data(self.resource_management.get_full_resources())
+        self.data_info.store_info(self.resource_management.get_full_resources())
 
 
 
@@ -132,4 +132,23 @@ class UserExceptionHandling(UserInteractivity):
         except Exception as e:
             print(f"Error: {e}")
             self.delete_resource()
+
+
+
+class DataPresistence:
+    def __init__(self, resource_path='data.txt'):
+        self.resource_path = resource_path
+
+    def store_info(self, resources):
+        with open(self.resource_path, 'w') as storage:
+            for resource in resources:
+                storage.write(f"{resource.ID},{resource.key_attribute},{resource.non_key_attribute}\n")
+
+    def process_data(self):
+        try:
+            with open(self.resource_path, 'r') as storage:
+                info = [code.strip().split(',') for code in storage]
+                return [Resources(*resource_info) for resource_info in info]
+        except FileNotFoundError:
+            return[]
         

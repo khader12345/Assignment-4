@@ -66,7 +66,7 @@ class UserInteractivity:
 
 
 class Resources:
-    
+
     def __init__(self, ID, key_attribute, non_key_attribute):
         self.ID=ID
         self.key_attribute=key_attribute
@@ -74,4 +74,32 @@ class Resources:
 
     def __str__(self):
         return f"*ID: {self.ID} | Key Attribute: {self.key_attribute} | Non-Key Attribute: {self.non_key_attribute}*"
+    
+class ResourceManagement:
+    def __init__(self):
+        self.resources = []
+
+    def create_resource(self, ID, key_attribute, non_key_attribute):
+        resource = Resources(ID, key_attribute, non_key_attribute)
+        self.resources.append(resource)
+
+    def find_resource(self, key_attribute, non_key_attribute):
+        return [resource for resource in self.resources
+                if key_attribute.lower() in str(resource.key_attribute).lower()
+                and non_key_attribute.lower() in str(resource.non_key_attribute).lower]
+    
+    def change_resource(self, ID, non_key_attribute):
+        for resource in self.resources:
+            if resource.ID == ID:
+                resource.non_key_attribute = non_key_attribute
+
+    def delete_resource(self, ID):
+        self.resources = [resource for resource in self.resources if resource.ID != ID]
+
+    def show_all_resources(self):
+        return self.resources
+       
+
+
+
     

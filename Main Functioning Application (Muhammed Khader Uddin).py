@@ -98,6 +98,10 @@ class ResourceManagement:
 
     def show_all_resources(self):
         return self.resources
+    
+
+class ExceptionHandling(Exception)
+    pass
        
 
 

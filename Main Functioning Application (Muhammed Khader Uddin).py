@@ -8,8 +8,8 @@ class UserInteractivity:
     def create_resource(self):
         ID = input("Please enter the resource ID: ")
         key_attribute = input("Please enter the key attribute: ")
-        non_key_aatribute = input("Please enter the non-key attribute: ")
-        self.resource_management.create_resource(ID, key_attribute, non_key_aatribute)
+        non_key_atribute = input("Please enter the non-key attribute: ")
+        self.resource_management.create_resource(ID, key_attribute, non_key_atribute)
 
     def read_resource(self):
         key_attribute = input("Please enter the key attribute for resource to read: ")
@@ -152,3 +152,11 @@ class DataPresistence:
         except FileNotFoundError:
             return[]
         
+
+if __name__ == '__main__':
+    data_info = DataPresistence()
+    resource_managment = ResourceManagement()
+    resource_managment.resources = data_info.process_data()
+
+    UserInterface = UserExceptionHandling(resource_managment, data_info)
+    UserInterface.menu()
